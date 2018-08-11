@@ -35,7 +35,6 @@ app.use((req, res, next) => {
 
 app.use(express.static(__dirname + '/public')) // To Deliver static assets and contents
 
-
 app.get('/', (req, res) => {
   res.render('home.hbs', {
     pageTitle: 'Home Page',
@@ -52,3 +51,32 @@ app.get('/about', (req, res) => {
 app.listen(port, () => {
   console.log('Express Server running at 3000')
 })
+
+app.get('/test', (req, res) => {
+  res.status(404).send({
+    'error': 'Page Not Found'
+  })
+})
+
+app.get('/users',(req, res) => {
+  res.send([
+    {
+      "user": "Kishore Devaraj",
+      "age" : 23
+    },
+    {
+      "user": "Mike Shinoda",
+      "age" : 22
+    },
+    {
+      "user": "Katy Perry",
+      "age" : 26
+    },
+    {
+      "user": "Andrew Mathew",
+      "age" : 28
+    },
+  ])
+})
+
+module.exports.app = app
